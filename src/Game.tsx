@@ -2,13 +2,13 @@ import React from "react";
 import {playGame} from "./RockPaperHelper";
 
 export interface GameProps {
-    resultCallback: (arg0: string) => void;
+    resultCallback: (result: string) => void;
 }
 
 interface PlayerInputProps {
     id: string;
     label: string;
-    onChangeCallback: (arg0: string) => void;
+    onChangeCallback: (event: string) => void;
 }
 
 const PlayerInput: React.FC<PlayerInputProps> = ({id, label, onChangeCallback}) => {
