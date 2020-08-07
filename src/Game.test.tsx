@@ -1,28 +1,20 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import App from './App';
-import {expectElementToContainExternalLink, expectRenderedComponent} from "./testHelpers";
+import Game from "./Game";
 
-describe("App Component", () => {
+describe("Game Component", () => {
   let component: any;
+  let result: string;
 
   beforeEach(() => {
-    component = render(<App />);
-  });
-
-  it('should display text on page', () => {
-    expectRenderedComponent(component).toContainText("Welcome to Rock Paper Scissors")
-  });
-
-  it('should display a link to rock paper scissor rules', () => {
-    expectElementToContainExternalLink(component, "Rock Paper Scissor Rules", "https://en.wikipedia.org/wiki/Rock_paper_scissors");
+    component = render(<Game resultCallback={(s) => result = s}/>);
   });
 
   it("should have a play button", () => {
     const button = component.getByText("Play");
     fireEvent.click(button);
 
-    expectRenderedComponent(component).toContainText("Draw");
+    expect(result).toEqual("Draw");
 
     //Hints
     //This button should call playGame in RockPaperHelper.ts when clicked
@@ -50,8 +42,7 @@ describe("App Component", () => {
     const button = component.getByText("Play");
     fireEvent.click(button);
 
-    expectRenderedComponent(component).toContainText("Player One Wins");
-
+    expect(result).toEqual("Player One Wins");
     //Hints
     // You will need to handle the onChange event for the inputs and save the information in state
     // (e) => e.target.value
