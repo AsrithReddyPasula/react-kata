@@ -14,11 +14,11 @@ describe("App Component", () => {
     expectRenderedComponent(component).toContainText("Welcome to Rock Paper Scissors")
   });
 
-  xit('should display a link to rock paper scissor rules', () => {
+  it('should display a link to rock paper scissor rules', () => {
     expectElementToContainExternalLink(component, "Rock Paper Scissor Rules", "https://en.wikipedia.org/wiki/Rock_paper_scissors");
   });
 
-  xit("should have a play button", () => {
+  it("should have a play button", () => {
     const button = component.getByText("Play");
     fireEvent.click(button);
 
@@ -29,7 +29,7 @@ describe("App Component", () => {
     //https://reactjs.org/docs/handling-events.html
   });
 
-  xit('should display 2 input boxes',() => {
+  it('should display 2 input boxes',() => {
     component.getByLabelText("Player One Input");
     component.getByLabelText("Player Two Input");
 
@@ -38,7 +38,7 @@ describe("App Component", () => {
     //https://www.w3schools.com/tags/tag_label.asp
   });
 
-  xit("should display winner when inputs are filled out", () => {
+  it("should display winner when inputs are filled out", () => {
     const playerOneInput = component.getByLabelText("Player One Input");
     fireEvent.change(playerOneInput, { target: { value: 'Rock' } });
     expect(playerOneInput.value).toBe('Rock');
