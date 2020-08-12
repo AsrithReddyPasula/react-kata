@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import './App.css';
 import {playGame} from "./RockPaperHelper";
-import Header from "./Header";
-import GameResultModal from "./GameResultModal";
 
 function App() {
   const [playerOne, setPlayerOne] = useState<string>("");
