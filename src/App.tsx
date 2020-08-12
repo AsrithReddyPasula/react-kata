@@ -9,15 +9,8 @@ function App() {
   const [playerTwo, setPlayerTwo] = useState<string>("");
   const [gameOutcome, setGameOutcome] = useState<string>("");
 
-  const clearGame = () => {
-      setPlayerOne("");
-      setPlayerTwo("");
-      setGameOutcome("");
-  };
-
   return (
     <div className="App">
-        <Header/>
         <div>
             <h2>Welcome to Rock Paper Scissors</h2>
             <a href="https://en.wikipedia.org/wiki/Rock_paper_scissors" target="_blank" rel="noreferrer noopener">
@@ -35,11 +28,8 @@ function App() {
 
         <button onClick={() => setGameOutcome(playGame(playerOne, playerTwo))}>Play</button>
 
-        <button onClick={clearGame}> Clear </button>
-
         {gameOutcome}
 
-        <GameResultModal gameResult={gameOutcome} onPlayAgain={clearGame}/>
     </div>
   );
 }

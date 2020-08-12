@@ -86,7 +86,7 @@ describe("App Component", () => {
       expect(playerTwoInput.value).toBe("");
     });
 
-    it("should display header", () => {
+    xit("should display header", () => {
       component.getByTestId("app-header");
       expectRenderedComponent(component).toContainText("Rock Paper Scissor Game");
 
@@ -94,7 +94,7 @@ describe("App Component", () => {
       // There is a Header.tsx component
     });
 
-    it("should popup modal with who won after you click play", () => {
+    xit("should popup modal with who won after you click play", () => {
       playGame();
       const modal = within(component.getByTestId("game-modal"));
       expectRenderedComponent(modal).toContainText("Game Result: Player One Wins");
@@ -103,7 +103,7 @@ describe("App Component", () => {
       // There is a GameModal.tsx component
     });
 
-    it("modal should contain a button to Play Again", () => {
+    xit("modal should contain a button to Play Again", () => {
       playGame();
 
       const modal = within(component.getByTestId("game-modal"));
@@ -113,7 +113,7 @@ describe("App Component", () => {
       // Don't worry about any of the clicking logic yet. That's the next test!
     });
 
-    it('play again button should reset game when clicked', () => {
+    xit('play again button should reset game when clicked', () => {
       playGame();
 
       const modal = within(component.getByTestId("game-modal"));

@@ -3,10 +3,9 @@ import Modal from "react-modal";
 
 interface GameResultModalProps {
     gameResult?: string;
-    onPlayAgain?: () => void;
 }
 
-const GameResultModal: React.FC<GameResultModalProps> = ({gameResult, onPlayAgain}) => {
+const GameResultModal: React.FC<GameResultModalProps> = ({gameResult}) => {
     return (
         <Modal
             testId={"game-modal"}
@@ -14,9 +13,6 @@ const GameResultModal: React.FC<GameResultModalProps> = ({gameResult, onPlayAgai
         >
             <div>
                 <h3>Game Result: {gameResult}</h3>
-                <button onClick={onPlayAgain}>
-                    Play Again
-                </button>
             </div>
         </Modal>
     )
