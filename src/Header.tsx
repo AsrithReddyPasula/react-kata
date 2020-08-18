@@ -1,16 +1,11 @@
-import React, {useContext} from "react";
-import {toDisplayText} from "./RockPaperHelper";
-import {UpperCaseContext} from "./AppContext";
+import React from "react";
 
 const Header: React.FC = () => {
-    const {isUpperCase, toggleUpperCase} = useContext(UpperCaseContext)
-
-    return (
+        return (
         <header style={{background: "#003e7e", color: "#ffffff"}} data-testid="app-header">
             <h2>
-                {toDisplayText("Rock Paper Scissor Game", isUpperCase)}
+                Rock Paper Scissor Game
             </h2>
-            <button onClick={toggleUpperCase}>Change Case</button>
         </header>
     )
 };
