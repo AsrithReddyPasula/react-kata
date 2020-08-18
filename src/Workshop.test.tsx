@@ -3,15 +3,19 @@ import { render, fireEvent, within } from '@testing-library/react';
 import App from './App';
 import {expectElementToContainExternalLink, expectRenderedComponent} from "./testHelpers";
 
-describe("App Component", () => {
+describe("Workshop", () => {
   let component: any;
 
-  const playGame = () => {
+  const fillInPlayerInputs = () => {
     const playerOneInput = component.getByLabelText("Player One Input");
-    fireEvent.change(playerOneInput, { target: { value: 'Rock' } });
+    fireEvent.change(playerOneInput, {target: {value: 'Rock'}});
 
     const playerTwoInput = component.getByLabelText("Player Two Input");
-    fireEvent.change(playerTwoInput, { target: { value: 'Scissors' } });
+    fireEvent.change(playerTwoInput, {target: {value: 'Scissors'}});
+  }
+
+  const playGame = () => {
+    fillInPlayerInputs();
 
     fireEvent.click(component.getByText("Play"));
   };
@@ -86,7 +90,7 @@ describe("App Component", () => {
       expect(playerTwoInput.value).toBe("");
     });
 
-    xit("should display header", () => {
+    it("should display header", () => {
       component.getByTestId("app-header");
       expectRenderedComponent(component).toContainText("Rock Paper Scissor Game");
 
@@ -94,7 +98,7 @@ describe("App Component", () => {
       // There is a Header.tsx component
     });
 
-    xit("should popup modal with who won after you click play", () => {
+    it("should popup modal with who won after you click play", () => {
       playGame();
       const modal = within(component.getByTestId("game-modal"));
       expectRenderedComponent(modal).toContainText("Game Result: Player One Wins");
@@ -103,7 +107,7 @@ describe("App Component", () => {
       // There is a GameModal.tsx component
     });
 
-    xit("modal should contain a button to Play Again", () => {
+    it("modal should contain a button to Play Again", () => {
       playGame();
 
       const modal = within(component.getByTestId("game-modal"));
@@ -113,7 +117,7 @@ describe("App Component", () => {
       // Don't worry about any of the clicking logic yet. That's the next test!
     });
 
-    xit('play again button should reset game when clicked', () => {
+    it('play again button should reset game when clicked', () => {
       playGame();
 
       const modal = within(component.getByTestId("game-modal"));
@@ -136,6 +140,45 @@ describe("App Component", () => {
       //  1. Add a new prop to GameResultModal.tsx that is a function
       //  2. Call this new function prop when the button is clicked
       //  3. Have App.tsx pass a function to GameResult.tsx that clears the App.tsx state
+    });
+  });
+
+  describe("Workshop 3", () => {
+    it("Clicking Change Case button should uppercase the header text", () => {
+      fireEvent.click(component.getByText("Change Case"));
+      expectRenderedComponent(component).toContainText("ROCK PAPER SCISSOR GAME");
+
+      fireEvent.click(component.getByText("Change Case"));
+      expectRenderedComponent(component).toContainText("Rock Paper Scissor Game");
+    });
+
+    it("Clicking Change Case Button should uppercase banner text", () => {
+      fireEvent.click(component.getByText("Change Case"));
+      expectRenderedComponent(component).toContainText("WELCOME TO ROCK PAPER SCISSORS");
+      expectRenderedComponent(component).toContainText("ROCK PAPER SCISSOR RULES");
+
+      fireEvent.click(component.getByText("Change Case"));
+      expectRenderedComponent(component).toContainText("Welcome to Rock Paper Scissors");
+      expectRenderedComponent(component).toContainText("Rock Paper Scissor Rules");
+    });
+
+    it("Clicking Change Case Button should uppercase player input labels", () => {
+      fireEvent.click(component.getByText("Change Case"));
+      expectRenderedComponent(component).toContainText("PLAYER ONE INPUT");
+      expectRenderedComponent(component).toContainText("PLAYER TWO INPUT");
+
+      fireEvent.click(component.getByText("Change Case"));
+      expectRenderedComponent(component).toContainText("Player One Input");
+      expectRenderedComponent(component).toContainText("Player Two Input");
+    });
+
+    it("Clicking Change Case Button should uppercase the game outcome", () => {
+      fillInPlayerInputs();
+      fireEvent.click(component.getByText("Change Case"));
+      fireEvent.click(component.getByText("Play"));
+
+      const modal = within(component.getByTestId("game-modal"));
+      expectRenderedComponent(modal).toContainText("GAME RESULT: PLAYER ONE WINS");
     });
   });
 });

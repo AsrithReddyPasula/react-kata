@@ -1,35 +1,22 @@
 import React, {useState} from 'react';
 import './App.css';
-import {playGame} from "./RockPaperHelper";
 import Header from "./Header";
-import GameResultModal from "./GameResultModal";
+import Game from "./Game";
+import {toDisplayText} from "./RockPaperHelper";
 
 function App() {
-  const [playerOne, setPlayerOne] = useState<string>("");
-  const [playerTwo, setPlayerTwo] = useState<string>("");
-  const [gameOutcome, setGameOutcome] = useState<string>("");
+  const [isUpperCase, setIsUpperCase] = useState<boolean>(false);
 
   return (
     <div className="App">
+        <Header onChangeCase={() => setIsUpperCase(!isUpperCase)}/>
         <div>
-            <h2>Welcome to Rock Paper Scissors</h2>
+            <h2>{toDisplayText("Welcome to Rock Paper Scissors", isUpperCase)}</h2>
             <a href="https://en.wikipedia.org/wiki/Rock_paper_scissors" target="_blank" rel="noreferrer noopener">
-                Rock Paper Scissor Rules
+                {toDisplayText("Rock Paper Scissor Rules", isUpperCase)}
             </a>
         </div>
-
-        <div>
-            <label htmlFor="player-one-input">Player One Input</label>
-            <input type="text" id="player-one-input" value={playerOne} onChange={(e) => setPlayerOne(e.target.value)}/>
-
-            <label htmlFor="player-two-input">Player Two Input</label>
-            <input type="text" id="player-two-input" value={playerTwo} onChange={(e) => setPlayerTwo(e.target.value)}/>
-        </div>
-
-        <button onClick={() => setGameOutcome(playGame(playerOne, playerTwo))}>Play</button>
-
-        {gameOutcome}
-
+        <Game isUpperCase={isUpperCase} />
     </div>
   );
 }

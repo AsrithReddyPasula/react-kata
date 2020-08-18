@@ -17,3 +17,7 @@ export function playGame (playerOne: string, playerTwo: string) {
         return "Invalid Inputs: Please use Rock, Paper, or Scissors"
     }
 }
+
+export function toDisplayText (text: string, isUpperCase: boolean) {
+    return isUpperCase ? text.toUpperCase() : text;
+}
