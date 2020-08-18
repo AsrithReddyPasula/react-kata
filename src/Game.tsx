@@ -1,15 +1,13 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import {playGame, toDisplayText} from "./RockPaperHelper";
 import GameResultModal from "./GameResultModal";
+import {UpperCaseContext} from "./AppContext";
 
-interface GameProps {
-    isUpperCase: boolean;
-}
-
-const Game: React.FC<GameProps> = ({isUpperCase}) => {
+const Game: React.FC = () => {
     const [playerOne, setPlayerOne] = useState<string>("");
     const [playerTwo, setPlayerTwo] = useState<string>("");
     const [gameOutcome, setGameOutcome] = useState<string>("");
+    const {isUpperCase} = useContext(UpperCaseContext)
     const clearGame = () => {
         setPlayerOne("");
         setPlayerTwo("");
@@ -32,7 +30,7 @@ const Game: React.FC<GameProps> = ({isUpperCase}) => {
             <button onClick={clearGame}>Clear</button>
 
             {gameOutcome}
-            <GameResultModal gameResult={gameOutcome} onPlayAgain={clearGame} isUpperCase={isUpperCase}/>
+            <GameResultModal gameResult={gameOutcome} onPlayAgain={clearGame}/>
         </>
     )
 };

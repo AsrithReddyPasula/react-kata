@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, within } from '@testing-library/react';
+import {fireEvent, render, within} from '@testing-library/react';
 import App from './App';
 import {expectElementToContainExternalLink, expectRenderedComponent} from "./testHelpers";
 
@@ -150,6 +150,10 @@ describe("Workshop", () => {
 
       fireEvent.click(component.getByText("Change Case"));
       expectRenderedComponent(component).toContainText("Rock Paper Scissor Game");
+
+      //Hints
+      // You'll need to set state within the Header component
+      // Use the toDisplayText helper function
     });
 
     it("Clicking Change Case Button should uppercase banner text", () => {
@@ -160,6 +164,11 @@ describe("Workshop", () => {
       fireEvent.click(component.getByText("Change Case"));
       expectRenderedComponent(component).toContainText("Welcome to Rock Paper Scissors");
       expectRenderedComponent(component).toContainText("Rock Paper Scissor Rules");
+
+      //Hints
+      // You'll need to move the state up to the App component and pass a callback to the Header
+      // You'll need to pass a property to the App Banner Component
+      // See the Game and GameResultModal for an example
     });
 
     it("Clicking Change Case Button should uppercase player input labels", () => {
@@ -170,6 +179,9 @@ describe("Workshop", () => {
       fireEvent.click(component.getByText("Change Case"));
       expectRenderedComponent(component).toContainText("Player One Input");
       expectRenderedComponent(component).toContainText("Player Two Input");
+
+      //Hints
+      // You'll need to pass a property to the Game component
     });
 
     it("Clicking Change Case Button should uppercase the game outcome", () => {
@@ -179,7 +191,20 @@ describe("Workshop", () => {
 
       const modal = within(component.getByTestId("game-modal"));
       expectRenderedComponent(modal).toContainText("GAME RESULT: PLAYER ONE WINS");
+
+      //Hints
+      // You'll need to pass a property to the GameResultModal
     });
+
+    it('Should use react context', () => {
+      //Try refactoring the app to use react context instead of passing isUpperCase everywhere
+      //Hints
+      // Wrap the entire App with an AppContext component
+      // You will need to call useContext(UpperCaseContext) in all the components
+      // useContext(UpperCaseContext).isUpperCase returns the current state
+      // useContext(UpperCaseContext).toggleUpperCase returns the function to toggle the state
+      // https://stackoverflow.com/questions/41030361/how-to-update-react-context-from-inside-a-child-component
+    })
   });
 });
 

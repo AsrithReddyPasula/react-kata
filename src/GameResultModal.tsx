@@ -1,14 +1,16 @@
-import React from "react";
+import React, {useContext} from "react";
 import Modal from "react-modal";
 import {toDisplayText} from "./RockPaperHelper";
+import {UpperCaseContext} from "./AppContext";
 
 interface GameResultModalProps {
     gameResult?: string;
     onPlayAgain?: () => void;
-    isUpperCase: boolean;
 }
 
-const GameResultModal: React.FC<GameResultModalProps> = ({gameResult, onPlayAgain, isUpperCase}) => {
+const GameResultModal: React.FC<GameResultModalProps> = ({gameResult, onPlayAgain}) => {
+    const {isUpperCase} = useContext(UpperCaseContext)
+
     return (
         <Modal
             testId={"game-modal"}

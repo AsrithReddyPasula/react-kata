@@ -1,4 +1,4 @@
-import { RenderResult } from "@testing-library/react";
+import {RenderResult} from "@testing-library/react";
 
 export function expectRenderedComponent(component: RenderResult) {
   return {
