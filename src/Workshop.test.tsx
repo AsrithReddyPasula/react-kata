@@ -156,7 +156,7 @@ describe("Workshop", () => {
       // Use the toDisplayText helper function
     });
 
-    xit("Clicking Change Case Button should uppercase banner text", () => {
+    it("Clicking Change Case Button should uppercase banner text", () => {
       fireEvent.click(component.getByText("Change Case"));
       expectRenderedComponent(component).toContainText("WELCOME TO ROCK PAPER SCISSORS");
       expectRenderedComponent(component).toContainText("ROCK PAPER SCISSOR RULES");
@@ -171,7 +171,7 @@ describe("Workshop", () => {
       // See the Game and GameResultModal for an example
     });
 
-    xit("Clicking Change Case Button should uppercase player input labels", () => {
+    it("Clicking Change Case Button should uppercase player input labels", () => {
       fireEvent.click(component.getByText("Change Case"));
       expectRenderedComponent(component).toContainText("PLAYER ONE INPUT");
       expectRenderedComponent(component).toContainText("PLAYER TWO INPUT");
@@ -184,7 +184,7 @@ describe("Workshop", () => {
       // You'll need to pass a property to the Game component
     });
 
-    xit("Clicking Change Case Button should uppercase the game outcome", () => {
+    it("Clicking Change Case Button should uppercase the game outcome", () => {
       fillInPlayerInputs();
       fireEvent.click(component.getByText("Change Case"));
       fireEvent.click(component.getByText("Play"));
@@ -196,7 +196,7 @@ describe("Workshop", () => {
       // You'll need to pass a property to the GameResultModal
     });
 
-    xit('Should use react context', () => {
+    it('Should use react context', () => {
       //Try refactoring the app to use react context instead of passing isUpperCase everywhere
       //Hints
       // Wrap the entire App with an AppContext component

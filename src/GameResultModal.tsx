@@ -1,5 +1,7 @@
-import React from "react";
+import React, {useContext} from "react";
 import Modal from "react-modal";
+import {toDisplayText} from "./RockPaperHelper";
+import {UpperCaseContext} from "./AppContext";
 
 interface GameResultModalProps {
     gameResult?: string;
@@ -7,13 +9,15 @@ interface GameResultModalProps {
 }
 
 const GameResultModal: React.FC<GameResultModalProps> = ({gameResult, onPlayAgain}) => {
+    const {isUpperCase} = useContext(UpperCaseContext)
+
     return (
         <Modal
             testId={"game-modal"}
             isOpen={gameResult !== ""}
         >
             <div>
-                <h3>{`Game Result: ${gameResult}`}</h3>
+                <h3>{toDisplayText(`Game Result: ${gameResult}`, isUpperCase)}</h3>
                 <button onClick={onPlayAgain}>
                     Play Again
                 </button>
